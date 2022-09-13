@@ -6,13 +6,15 @@ import EditTaskForm from "../editTaskForm/EditTaskForm";
 import { TasksContext } from "../../contexts/tasks.context";
 
 function Task({id, idx, dataLength, task, completed}){ 
-    const {removeTask, toggleTaskCompleted} = useContext(TasksContext);
+    const {dispatch} = useContext(TasksContext);
+    // const {removeTask, toggleTaskCompleted} = useContext(TasksContext);
     const [isEditing, toggleIsEditing] = useToggle(false);
     const isNotLastElement = idx < dataLength-1;
 
     const handleDeleteClick = () => {
         console.log(`@task removing task with id... ${id}`);
-        removeTask(id);
+        dispatch({type: 'REMOVE-TASK', id: id});
+        // removeTask(id);
     }
 
     const handleEditClick = () => {
@@ -23,7 +25,8 @@ function Task({id, idx, dataLength, task, completed}){
 
     const handleChange = () => {
         console.log(`@task toggling task completed with id... ${id}`);
-        toggleTaskCompleted(id);
+        dispatch({type: 'TOGGLE-TASK-COMPLETED', id: id});
+        // toggleTaskCompleted(id);
     }
 
     return (

@@ -1,4 +1,5 @@
-import React, {createContext} from 'react';
+import React, {createContext, useReducer} from 'react';
+import taskReducer from '../reducers/task.reducer';
 import { v4 as uuidV4 } from "uuid";
 import useTaskState from '../hooks/useTaskState';
 
@@ -12,10 +13,12 @@ export const TasksContext = createContext();
 
 export function TaskProvider(props) {
 
-    const TaskCrudOps = useTaskState(defaultTasks);
-    
+    // const TaskCrudOps = useTaskState(defaultTasks);
+
+    const [ tasks, dispatch ] = useReducer(taskReducer, defaultTasks);
+
     return(
-        <TasksContext.Provider value={TaskCrudOps}>
+        <TasksContext.Provider value={{tasks, dispatch}}>
             {props.children}
         </TasksContext.Provider>
     );

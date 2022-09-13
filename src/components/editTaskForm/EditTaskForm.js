@@ -5,12 +5,14 @@ import { TasksContext } from "../../contexts/tasks.context";
 
 function EditTaskForm({id, task, toggleIsEditing}){
 
-    const {editTask} = useContext(TasksContext);
+    const {dispatch} = useContext(TasksContext);
+    // const {editTask} = useContext(TasksContext);
     const [targetTask, updateTask, resetTask] = useFormInputState(task);
 
     const handleSubmit = (e) => {
        e.preventDefault();
-       editTask(id, targetTask);
+       dispatch({type: 'EDIT-TASK', id: id, taskUpdate: targetTask});
+    //    editTask(id, targetTask);
        resetTask();
        toggleIsEditing();
     }

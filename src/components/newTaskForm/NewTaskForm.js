@@ -7,11 +7,13 @@ import { TasksContext } from "../../contexts/tasks.context";
 
 function NewTaskForm({props}){
     const [task, updateTask, resetTask] = useFormInputState('');
-    const {addTask} = useContext(TasksContext);
+    const {dispatch} = useContext(TasksContext);
+    // const {addTask} = useContext(TasksContext);
 
     const handleSubmit = (e) => {
        e.preventDefault();
-       addTask(task);
+       dispatch({type: 'ADD-TASK', task: task});
+    //    addTask(task);
        resetTask();
     }
 
