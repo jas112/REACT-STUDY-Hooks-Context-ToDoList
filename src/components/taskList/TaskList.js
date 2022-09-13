@@ -5,7 +5,10 @@ import Paper from '@mui/material/Paper';
 import { TasksContext } from "../../contexts/tasks.context";
 
 function TaskList(){
-    const {tasks} = useContext(TasksContext);
+
+    const tasks = useContext(TasksContext);
+    // const {tasks} = useContext(TasksContext);
+
     const taskList = tasks.map((task, idx) => (
         <Task 
             key={task.id} 

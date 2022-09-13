@@ -3,11 +3,14 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useFormInputState from "../../hooks/useFormInputState";
-import { TasksContext } from "../../contexts/tasks.context";
+import { DispatchContext } from "../../contexts/tasks.context";
+// import { TasksContext } from "../../contexts/tasks.context";
 
 function NewTaskForm({props}){
     const [task, updateTask, resetTask] = useFormInputState('');
-    const {dispatch} = useContext(TasksContext);
+    const dispatch = useContext(DispatchContext);
+    // const {dispatch} = useContext(DispatchContext);
+    // const {dispatch} = useContext(TasksContext);
     // const {addTask} = useContext(TasksContext);
 
     const handleSubmit = (e) => {

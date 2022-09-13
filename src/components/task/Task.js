@@ -3,10 +3,14 @@ import { ListItem, ListItemText, ListItemSecondaryAction, IconButton, Divider, B
 import { Delete, Edit } from "@mui/icons-material";
 import useToggle from "../../hooks/useToggle";
 import EditTaskForm from "../editTaskForm/EditTaskForm";
-import { TasksContext } from "../../contexts/tasks.context";
+import { DispatchContext } from "../../contexts/tasks.context";
+// import { TasksContext } from "../../contexts/tasks.context";
 
 function Task({id, idx, dataLength, task, completed}){ 
-    const {dispatch} = useContext(TasksContext);
+
+    const dispatch = useContext(DispatchContext);
+    // const {dispatch} = useContext(DispatchContext);
+    // const {dispatch} = useContext(TasksContext);
     // const {removeTask, toggleTaskCompleted} = useContext(TasksContext);
     const [isEditing, toggleIsEditing] = useToggle(false);
     const isNotLastElement = idx < dataLength-1;
