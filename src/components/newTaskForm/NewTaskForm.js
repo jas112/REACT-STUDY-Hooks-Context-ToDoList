@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useFormInputState from "../../hooks/useFormInputState";
+import { TasksContext } from "../../contexts/tasks.context";
 
-function NewTaskForm({addTask, props}){
+function NewTaskForm({props}){
     const [task, updateTask, resetTask] = useFormInputState('');
+    const {addTask} = useContext(TasksContext);
 
     const handleSubmit = (e) => {
        e.preventDefault();

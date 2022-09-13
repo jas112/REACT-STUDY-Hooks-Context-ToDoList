@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import useFormInputState from "../../hooks/useFormInputState";
 import { Paper, Button, TextField } from "@mui/material";
+import { TasksContext } from "../../contexts/tasks.context";
 
-function EditTaskForm({id, task, editTask, toggleIsEditing}){
+function EditTaskForm({id, task, toggleIsEditing}){
 
+    const {editTask} = useContext(TasksContext);
     const [targetTask, updateTask, resetTask] = useFormInputState(task);
 
     const handleSubmit = (e) => {

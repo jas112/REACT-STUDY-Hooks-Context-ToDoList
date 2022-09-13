@@ -1,10 +1,12 @@
-import React from "react";
-import { ListItem, ListItemText, ListItemSecondaryAction, IconButton, Divider, Button, Checkbox } from "@mui/material";
+import React, {useContext} from "react";
+import { ListItem, ListItemText, ListItemSecondaryAction, IconButton, Divider, Button, Checkbox, useControlled } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import useToggle from "../../hooks/useToggle";
 import EditTaskForm from "../editTaskForm/EditTaskForm";
+import { TasksContext } from "../../contexts/tasks.context";
 
-function Task({id, idx, dataLength, task, completed, removeTask, toggleTaskCompleted, editTask}){ 
+function Task({id, idx, dataLength, task, completed}){ 
+    const {removeTask, toggleTaskCompleted} = useContext(TasksContext);
     const [isEditing, toggleIsEditing] = useToggle(false);
     const isNotLastElement = idx < dataLength-1;
 
@@ -28,7 +30,7 @@ function Task({id, idx, dataLength, task, completed, removeTask, toggleTaskCompl
         <>
             <ListItem style={{height: '74px'}}>
                 {isEditing ? (
-                    <EditTaskForm id={id} task={task} editTask={editTask} toggleIsEditing={toggleIsEditing} style={{width: "100%"}} />
+                    <EditTaskForm id={id} task={task} toggleIsEditing={toggleIsEditing} style={{width: "100%"}} />
                 ) : (
                     <>
                         <Checkbox tabIndex={-1} checked={completed} onChange={handleChange} />

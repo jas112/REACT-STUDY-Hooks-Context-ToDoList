@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import Task from "../task/Task";
 import List from '@mui/material/List';
 import Paper from '@mui/material/Paper';
+import { TasksContext } from "../../contexts/tasks.context";
 
-function TaskList({tasks, removeTask, toggleTaskCompleted, editTask}){
-
+function TaskList(){
+    const {tasks} = useContext(TasksContext);
     const taskList = tasks.map((task, idx) => (
         <Task 
             key={task.id} 
@@ -12,10 +13,7 @@ function TaskList({tasks, removeTask, toggleTaskCompleted, editTask}){
             idx={idx} 
             dataLength={tasks.length}
             task={task.task} 
-            completed={task.completed} 
-            removeTask={removeTask} 
-            toggleTaskCompleted={toggleTaskCompleted} 
-            editTask={editTask} 
+            completed={task.completed}  
         />
     ));
 
